@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  app:
+    image: invoiceninja/invoiceninja
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - APP_KEY=SomeRandomString
+      - APP_URL=http://localhost:8000
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=ninja
+      - DB_USERNAME=ninja
+      - DB_PASSWORD=ninja
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=ninja
+      - MYSQL_USER=ninja
+      - MYSQL_PASSWORD=ninja
+      - MYSQL_ROOT_PASSWORD=rootPassWord
+    ports:
+      - "3306:3306"
